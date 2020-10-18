@@ -32,3 +32,30 @@ jobs:
 
     - name: Build
       run: npm run build
+  deploy:
+    runs-on: ubuntu-latest
+    # When application is successfully tested and build has been generated
+    # Then we can start with deployment
+    needs: build
+    steps:
+      # Download previously shared build
+      - name: Get artifact
+      # Set the credentials from repository settings/secrets
+      - name: Configure AWS credentials
+      # Copy the files from build folder to the S3 bucket
+      - name: Deploy to S3
+  release:
+    runs-on: ubuntu-latest
+    # We specify that deploys needs to
+    # finish before we create a release
+    needs: deploy
+    steps:
+      # Download previously shared build
+      - name: Get artifact
+      # Zip the build using external action
+      - name: Zip build
+      # Upload as an artifact of the current workflow
+      - name: Upload build zip artifact
+      # Make official GitHub release which will trigger
+      # sending the mail with link for access
+      - name: Release
