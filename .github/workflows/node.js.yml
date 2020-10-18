@@ -40,10 +40,13 @@ jobs:
     steps:
       # Download previously shared build
       - name: Get artifact
+        run: npm run test
       # Set the credentials from repository settings/secrets
       - name: Configure AWS credentials
+        run: npm run test
       # Copy the files from build folder to the S3 bucket
       - name: Deploy to S3
+        run: npm run test
   release:
     runs-on: ubuntu-latest
     # We specify that deploys needs to
@@ -52,10 +55,14 @@ jobs:
     steps:
       # Download previously shared build
       - name: Get artifact
+        run: npm run test
       # Zip the build using external action
       - name: Zip build
+        run: npm run test
       # Upload as an artifact of the current workflow
       - name: Upload build zip artifact
+        run: npm run test
       # Make official GitHub release which will trigger
       # sending the mail with link for access
       - name: Release
+        run: npm run test
